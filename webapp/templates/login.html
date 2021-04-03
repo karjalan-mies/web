@@ -14,22 +14,31 @@
     <div class="container">
         <h1>{{title}}</h1>
         <div class="row">
-            <div class="col-8">
-                <form action="" method="POST">
-                    {{ form.hidden_tag() }}
-                    <p>
-                        {{ form.username.label }}<br>
-                        {{ form.username() }}
-                    </p>
+            <div class="col-4">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="after alert-warning" role="alert">
+                        {% for message in messages %}
+                            {{ message }}<br>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="{{ url_for('process_login') }}" method="POST">
+                    {{ login_form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ login_form.username.label }}
+                        {{ login_form.username() }}
+                    </div>
 
-                    <p>
-                        {{ form.password.label }}<br>
-                        {{ form.password() }}
-                    </p>
-                    <p>{{ form.submit() }}</p>
+                    <div class="form-group">
+                        {{ login_form.password.label }}
+                        {{ login_form.password() }}
+                    </div>
+                    <div class="form-group">{{ login_form.submit() }}</div>
                 </form>
             </div>
-            <div class="col-4">
+            <div class="col-8">
 
             </div>
         </div>
