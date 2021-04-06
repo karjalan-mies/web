@@ -13,7 +13,7 @@ def login():
         return redirect(url_for('news.index'))
     title = 'Страница авторизации'
     login_form = LoginForm()
-    return render_template('login.html', title=title, login_form=login_form)
+    return render_template('user/login.html', title=title, login_form=login_form)
 
 
 @blueprint.route('/process_login', methods=['POST'])

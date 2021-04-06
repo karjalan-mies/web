@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-from flask_migrate import Migrate
 
 from webapp.admin.views import blueprint as admin_blueprint
 from webapp.db import db
@@ -22,8 +21,6 @@ def create_app():
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(news_blueprint)
     app.register_blueprint(user_blueprint)
-
-    migrate = Migrate(app, db)
 
 
     @login_manager.user_loader

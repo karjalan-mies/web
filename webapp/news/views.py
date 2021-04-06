@@ -10,4 +10,4 @@ def index():
     weather = weather_by_city(current_app.config['WEATHER_DEFAULT_CITY'])
     news_list = News.query.order_by(News.date.desc()).all()
     title = 'Новости Python'
-    return render_template('index.html', title=title, weather=weather, news_list=news_list)
+    return render_template('news/index.html', title=title, weather=weather, news_list=news_list)
