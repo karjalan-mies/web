@@ -1,18 +1,6 @@
 from datetime import datetime
 
-import requests
 from bs4 import BeautifulSoup
-
-from webapp.db import db
-from webapp.news.models import News
-
-def get_html(url):
-    try:
-        result = requests.get(url)
-        result.raise_for_status()
-        return result.text
-    except(requests.RequestException, ValueError):
-        return False
 
 
 def get_python_news():
@@ -30,11 +18,3 @@ def get_python_news():
                 date = datetime.now()
             save_news(title, url, date)
 
-
-def save_news(title, url, date):
-    news_exists = News.query.filter(News.url == url).count()
-    print(news_exists)
-    if not news_exists:
-        new_news = News(title=title, url=url, date=date)
-        db.session.add(new_news)
-        db.session.commit()
